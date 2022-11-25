@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ASR</string>
+    <string-array name="planets_array">
+        <item>URGENT-IMPORTANT</item>
+        <item>URGENT-NOT IMPORTANT</item>
+        <item>NOT URGENT-IMPORTANT</item>
+        <item>NOT URGENT-NOT IMPORTANT</item>
+    </string-array>
 </resources>
