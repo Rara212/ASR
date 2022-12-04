@@ -13,6 +13,8 @@ class add_activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+        btnAdd = findViewById(R.id.button)
+
         btnAdd.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)

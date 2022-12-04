@@ -10,8 +10,8 @@ import android.widget.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView
-    lateinit var btnadd_activity: Button
-    lateinit var btnSetting: Button
+    lateinit var btnadd_activity: ImageButton
+    lateinit var btnSetting: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
 
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
+
+        btnadd_activity = findViewById(R.id.imageButton5)
+        btnSetting = findViewById(R.id.imageButton7)
 
 
         btnadd_activity.setOnClickListener {
