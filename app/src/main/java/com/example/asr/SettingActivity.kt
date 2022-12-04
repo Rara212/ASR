@@ -1,5 +1,6 @@
 package com.example.asr
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,11 +13,12 @@ class SettingActivity : AppCompatActivity() {
     lateinit var btnAboutus: ImageButton
     lateinit var btnLogout: ImageButton
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
 
-        btnAccount = findViewById(R.id.imageButton11)
+        btnAccount = findViewById(R.id.btnAccount)
         btnAboutus = findViewById(R.id.imageButton13)
         btnLogout = findViewById(R.id.imageButton14)
 
