@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ebded4"
-    tools:context=".WelcomeActivity">
+    tools:context=".welcomepage.WelcomeActivity">
 
     <TextView
         android:id="@+id/textView4"

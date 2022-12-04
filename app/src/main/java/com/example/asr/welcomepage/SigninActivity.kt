@@ -1,30 +1,26 @@
-package com.example.asr
+package com.example.asr.welcomepage
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.asr.MainActivity
+import com.example.asr.R
 
-class WelcomeActivity : AppCompatActivity() {
+class SigninActivity : AppCompatActivity() {
 
     lateinit var btnSignIn : Button
-    lateinit var btnNewAccount: Button
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
+        setContentView(R.layout.activity_signin)
 
         btnSignIn = findViewById(R.id.btnSignIn)
-        btnNewAccount = findViewById(R.id.btnNewAccount)
 
-        /*Moving to main activity*/
         btnSignIn.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
-                startActivity(it)
-            }
-        }
-        /*Moving to creat account*/
-        btnNewAccount.setOnClickListener {
-            Intent(this, CreateAccount::class.java).also {
                 startActivity(it)
             }
         }
