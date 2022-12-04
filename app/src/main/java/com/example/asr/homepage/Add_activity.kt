@@ -1,9 +1,10 @@
-package com.example.asr
+package com.example.asr.homepage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.asr.R
 
 class add_activity : AppCompatActivity() {
 

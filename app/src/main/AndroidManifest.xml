@@ -13,21 +13,21 @@
         android:theme="@style/Theme.ASR"
         tools:targetApi="31">
         <activity
-            android:name=".AboutUs"
+            android:name=".settings.AboutUs"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EditAccount"
+            android:name=".settings.EditAccount"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SettingActivity"
+            android:name=".settings.SettingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -60,14 +60,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".add_activity"
+            android:name=".homepage.add_activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".homepage.MainActivity"
             android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"

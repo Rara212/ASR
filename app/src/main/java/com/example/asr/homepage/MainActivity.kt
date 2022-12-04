@@ -1,12 +1,13 @@
-package com.example.asr
+package com.example.asr.homepage
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Display.Mode
-import android.widget.ArrayAdapter
-import android.widget.Spinner
 import android.widget.*
+import com.example.asr.*
+import com.example.asr.settings.SettingActivity
+import com.example.asr.welcomepage.list.Model
+import com.example.asr.welcomepage.list.TodoAdapter
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView

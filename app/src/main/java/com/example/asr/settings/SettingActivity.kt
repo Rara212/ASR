@@ -1,10 +1,11 @@
-package com.example.asr
+package com.example.asr.settings
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
+import com.example.asr.R
 import com.example.asr.welcomepage.WelcomeActivity
 
 class SettingActivity : AppCompatActivity() {

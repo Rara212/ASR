@@ -1,8 +1,9 @@
-package com.example.asr
+package com.example.asr.settings
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.example.asr.R
 
 class AboutUs : AppCompatActivity() {
 
