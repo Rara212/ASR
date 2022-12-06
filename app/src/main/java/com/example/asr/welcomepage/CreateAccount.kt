@@ -14,7 +14,7 @@ class CreateAccount : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
 
-        btnContinue = findViewById(R.id.imageButton4);
+        btnContinue = findViewById(R.id.btnContinue);
 
         btnContinue.setOnClickListener {
             Intent(this, SigninActivity::class.java).also {

@@ -17,7 +17,7 @@ class SigninActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
 
-        btnSignIn = findViewById(R.id.btnSignIn)
+        btnSignIn = findViewById(R.id.btnSignIn2)
 
         btnSignIn.setOnClickListener {
             Intent(this, MainActivity::class.java).also {

@@ -20,8 +20,8 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
 
         btnAccount = findViewById(R.id.btnAccount)
-        btnAboutus = findViewById(R.id.imageButton13)
-        btnLogout = findViewById(R.id.imageButton14)
+        btnAboutus = findViewById(R.id.btnAboutUs)
+        btnLogout = findViewById(R.id.btnLogout)
 
         btnAccount.setOnClickListener {
             Intent(this, EditAccount::class.java).also {
