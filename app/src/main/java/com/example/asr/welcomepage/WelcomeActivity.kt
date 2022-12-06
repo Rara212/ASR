@@ -20,7 +20,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         /*Moving to main activity*/
         btnSignIn.setOnClickListener {
-            Intent(this, MainActivity::class.java).also {
+            Intent(this, SigninActivity::class.java).also {
                 startActivity(it)
             }
         }
