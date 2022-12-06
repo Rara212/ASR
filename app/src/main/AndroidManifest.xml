@@ -60,7 +60,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".homepage.add_activity"
+            android:name=".homepage.AddActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

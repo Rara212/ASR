@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
 
         btnadd_activity.setOnClickListener {
-            Intent(this, add_activity::class.java).also {
+            Intent(this, AddActivity::class.java).also {
                 startActivity(it)
             }
         }
