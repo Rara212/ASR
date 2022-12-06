@@ -20,7 +20,7 @@ class SigninActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
-        
+
         btnLogIn = findViewById(R.id.btnLogIn)
         etUsername = findViewById(R.id.etUsername)
         btnLogIn.setOnClickListener {

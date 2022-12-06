@@ -34,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
 
-        btnadd_activity = findViewById(R.id.imageButton5)
-        btnSetting = findViewById(R.id.imageButton7)
+        btnadd_activity = findViewById(R.id.btnAddList)
+        btnSetting = findViewById(R.id.btnSetting)
 
 
         btnadd_activity.setOnClickListener {

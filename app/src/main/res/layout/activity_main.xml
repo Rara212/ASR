@@ -36,8 +36,8 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="355dp"
-        android:layout_height="29dp"
+        android:layout_width="371dp"
+        android:layout_height="74dp"
         android:layout_marginTop="24dp"
         android:entries="@array/planets_array"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -49,15 +49,16 @@
 
     <ImageButton
         android:id="@+id/btnAddList"
-        android:layout_width="56dp"
-        android:layout_height="54dp"
+        android:layout_width="76dp"
+        android:layout_height="62dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.885"
-        app:srcCompat="@mipmap/ic_addlist2_foreground" />
+        app:layout_constraintVertical_bias="0.907"
+        app:srcCompat="@mipmap/ic_addlist2_foreground"
+        android:contentDescription="Add Activity" />
 
     <TextView
         android:id="@+id/textView3"
@@ -75,15 +76,16 @@
 
     <ImageButton
         android:id="@+id/btnSetting"
-        android:layout_width="39dp"
-        android:layout_height="46dp"
+        android:layout_width="48dp"
+        android:layout_height="53dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022"
-        app:srcCompat="@mipmap/ic_settings2_foreground" />
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@mipmap/ic_settings2_foreground"
+        android:contentDescription="Settings" />
 
     <ListView
         android:id="@+id/list_todo"
