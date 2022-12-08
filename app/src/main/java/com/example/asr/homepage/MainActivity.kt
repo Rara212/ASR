@@ -37,40 +37,22 @@ class MainActivity : AppCompatActivity() {
         btnadd_activity = findViewById(R.id.btnAddList)
         btnSetting = findViewById(R.id.btnSetting)
 
-
+        /*Intent to add activity*/
         btnadd_activity.setOnClickListener {
             Intent(this, AddActivity::class.java).also {
                 startActivity(it)
             }
         }
 
+        /*Intent to go to setting*/
         btnSetting.setOnClickListener {
             Intent(this, SettingActivity::class.java).also {
                 startActivity(it)
 
             }
         }
-    }
 
-    override fun onBackPressed() {
-        val sharedPreference =  getSharedPreferences(
-            "app_preference", Context.MODE_PRIVATE
-        )
+        /*making spinner responsive*/
 
-        /*
-        var name = sharedPreference.getString("name", "").toString()
-
-        if (name.isEmpty()) {
-            super.onBackPressed()
-            return
-        }
-
-        Toast.makeText(
-            applicationContext,
-            "Kamu masih memiliki sesi, harap hapus data terlebih dahulu!",
-            Toast.LENGTH_SHORT
-        ).show()
-
-         */
     }
 }

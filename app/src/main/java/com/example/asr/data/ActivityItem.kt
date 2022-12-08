@@ -8,5 +8,4 @@ class ActivityItem (
     val URGENTNOTIMPORTANT: String? = null,
     val NOTURGENTIMPORTANT: String? = null,
     val NOTURGENTNOTIMPORTANT: String? = null,
-
     )
