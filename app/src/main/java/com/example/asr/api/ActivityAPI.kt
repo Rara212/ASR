@@ -4,6 +4,7 @@ import com.example.asr.data.ActivityItem
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.POST
 
 interface ActivityAPI {
     @GET("/rest/v1/activities?select=*")
@@ -11,4 +12,7 @@ interface ActivityAPI {
         @Header("Authorization") token: String,
         @Header("apikey") apiKey: String
     ) : Response<List<ActivityItem>>
+
+
+
 }
