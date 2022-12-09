@@ -31,12 +31,12 @@ class CreateAccount : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
 
         btnContinue.setOnClickListener {
-            signUp(etEmail.text.toString(), etPassword.text.toString())
+            /*signUp(etEmail.text.toString(), etPassword.text.toString())*/
             /*Intent(this, SigninActivity::class.java).also {
                 startActivity(it)*/
             }
         }
-
+    /*
     private fun signUp(email: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
             var data = Users(email = email, password = password)
@@ -48,7 +48,7 @@ class CreateAccount : AppCompatActivity() {
                 response.errorBody()?.string().toString()
             }
         }
-    }
+    }*/
 }
 
 
