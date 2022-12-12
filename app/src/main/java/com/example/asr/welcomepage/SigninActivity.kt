@@ -14,6 +14,7 @@ import com.example.asr.R
 import com.example.asr.api.RetrofitHelper
 import com.example.asr.api.UserApi
 import com.example.asr.data.Users
+import com.example.asr.settings.SettingActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,7 +42,7 @@ class SigninActivity : AppCompatActivity() {
             if (Email.text.isEmpty()) {
                 Toast.makeText(
                     applicationContext,
-                    "Harap isi nama terlebih dahulu",
+                    "Harap isi email terlebih dahulu",
                     Toast.LENGTH_SHORT
                 ).show()
                 return@setOnClickListener
@@ -62,6 +63,7 @@ class SigninActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
     private fun signIn(email: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -82,8 +84,18 @@ class SigninActivity : AppCompatActivity() {
 
             var msg = ""
             if (!failed) {
-                var email = jsonResponse.getJSONObject("user").get("email")
+                var email = jsonResponse.getJSONObject("user").get("email").toString()
                 msg = "Successfully login! Welcome back: $email"
+
+
+                val sharedPreference = getSharedPreferences(
+                    "app_preference", Context.MODE_PRIVATE
+                )
+
+                var editor = sharedPreference.edit()
+                editor.putString("email", email)
+                editor.commit()
+
             } else {
                 msg += jsonResponse.get("error_description").toString()
             }
@@ -94,7 +106,16 @@ class SigninActivity : AppCompatActivity() {
                     msg,
                     Toast.LENGTH_SHORT
                 ).show()
+                if (!failed) {
+                    goToHome();
+                }
             }
         }
+    }
+
+    private fun goToHome() {
+        val intent = Intent(this, SettingActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

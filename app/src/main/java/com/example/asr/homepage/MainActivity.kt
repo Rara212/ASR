@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnadd_activity: ImageButton
     lateinit var btnSetting: ImageButton
     lateinit var labelHeader: TextView
+    lateinit var spQuadrant : Spinner
 
     val apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1maWZ5d2JnY3FrZmFzbmhjaWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk5NTUxMzYsImV4cCI6MTk4NTUzMTEzNn0.EqjggAQEzg4acUUzrwVxncdxNOiGP3VYO9Wd2yRz_LA"
     val token = "Bearer $apiKey"
@@ -46,8 +47,9 @@ class MainActivity : AppCompatActivity() {
 
         btnadd_activity = findViewById(R.id.btnAddList)
         btnSetting = findViewById(R.id.btnSetting)
+        spQuadrant = findViewById(R.id.spinner)
 
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
                Toast.makeText(this@MainActivity,
                    "You selected ${adapterView?.getItemAtPosition(position).toString()}",
@@ -58,7 +60,6 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-
 
 
         /*Intent to add activity*/

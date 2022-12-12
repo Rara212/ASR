@@ -60,7 +60,7 @@ class CreateAccount : AppCompatActivity() {
 
             var msg = ""
             if (!failed) {
-                msg = "Successfully sign up!"
+                msg = "Successfully Sign Up!"
             } else {
                 var errorMessage = jsonResponse.get("error_description")
                 msg += errorMessage
