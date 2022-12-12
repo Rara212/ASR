@@ -12,6 +12,8 @@ import android.widget.Toast
 import com.example.asr.homepage.MainActivity
 import com.example.asr.R
 import com.example.asr.api.RetrofitHelper
+import com.example.asr.api.UserApi
+import com.example.asr.data.Users
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +27,7 @@ class SigninActivity : AppCompatActivity() {
     val apiKey = ""
     val token = "Bearer $apiKey"
 
-    val todoApi = RetrofitHelper.getInstance() create (UserApi::class.java)
+    val todoApi = RetrofitHelper.getInstance().create(UserApi::class.java)
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +35,7 @@ class SigninActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signin)
 
         btnLogIn = findViewById(R.id.btnLogIn)
-        Email = findViewById(R.id.etUsername)
+        Email = findViewById(R.id.Email)
         btnLogIn.setOnClickListener {
 
             if (Email.text.isEmpty()) {
@@ -59,39 +61,39 @@ class SigninActivity : AppCompatActivity() {
             intent.putExtra("result", Email)
             startActivity(intent)
         }
-        private fun signIn(email: String, password: String) {
-            CoroutineScope(Dispatchers.IO).launch {
+    }
+    private fun signIn(email: String, password: String) {
+        CoroutineScope(Dispatchers.IO).launch {
 
-                val data = Users(email = email, password = password)
-                val response = todoApi.signIn(token = token, apiKey = apiKey, data = data)
+            val data = Users(email = email, password = password)
+            val response = todoApi.signIn(token = token, apiKey = apiKey, data = data)
 
-                val bodyResponse = if (response.code() == 200) {
-                    response.body()?.string()
-                } else {
-                    response.errorBody()?.string().toString()
-                }
+            val bodyResponse = if (response.code() == 200) {
+                response.body()?.string()
+            } else {
+                response.errorBody()?.string().toString()
+            }
 
-                var failed = false
-                val jsonResponse = JSONObject(bodyResponse)
-                if (jsonResponse.keys().asSequence().toList().contains("error")) {
-                    failed = true
-                }
+            var failed = false
+            val jsonResponse = JSONObject(bodyResponse)
+            if (jsonResponse.keys().asSequence().toList().contains("error")) {
+                failed = true
+            }
 
-                var msg = ""
-                if (!failed) {
-                    var email = jsonResponse.getJSONObject("user").get("email")
-                    msg = "Successfully login! Welcome back: $email"
-                } else {
-                    msg += jsonResponse.get("error_description").toString()
-                }
+            var msg = ""
+            if (!failed) {
+                var email = jsonResponse.getJSONObject("user").get("email")
+                msg = "Successfully login! Welcome back: $email"
+            } else {
+                msg += jsonResponse.get("error_description").toString()
+            }
 
-                CoroutineScope(Dispatchers.Main).launch {
-                    Toast.makeText(
-                        applicationContext,
-                        msg,
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+            CoroutineScope(Dispatchers.Main).launch {
+                Toast.makeText(
+                    applicationContext,
+                    msg,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
