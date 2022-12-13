@@ -1,5 +1,6 @@
 package com.example.asr.homepage
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -20,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var btnSetting: ImageButton
     lateinit var labelHeader: TextView
     lateinit var spQuadrant : Spinner
+    lateinit var btnLogout : ImageButton
 
     val apiKey = ""
     val token = "Bearer $apiKey"
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     val Items = ArrayList<Model>()
     val ActivityAPI = RetrofitHelper.getInstance().create(ActivityAPI::class.java)
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         btnadd_activity = findViewById(R.id.btnAddList)
         btnSetting = findViewById(R.id.btnSetting)
         spQuadrant = findViewById(R.id.spinner)
+        btnLogout = findViewById(R.id.btnSignOut)
 
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -83,6 +87,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
 
         /*making spinner responsive*/
 

@@ -14,7 +14,7 @@ class SettingActivity : AppCompatActivity() {
 
     lateinit var btnAccount: ImageButton
     lateinit var btnAboutus: ImageButton
-    lateinit var btnLogout: ImageButton
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,6 @@ class SettingActivity : AppCompatActivity() {
 
         btnAccount = findViewById(R.id.btnAccount)
         btnAboutus = findViewById(R.id.btnAboutUs)
-        btnLogout = findViewById(R.id.btnLogout)
 
         btnAccount.setOnClickListener {
             Intent(this, EditAccount::class.java).also {
@@ -35,11 +34,6 @@ class SettingActivity : AppCompatActivity() {
             Intent(this, AboutUs::class.java).also {
                 startActivity(it)
             }
-        }
-
-        btnLogout.setOnClickListener {
-            val intent = Intent(this, SigninActivity::class.java)
-            startActivity(intent)
         }
     }
 }

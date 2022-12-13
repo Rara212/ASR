@@ -32,18 +32,6 @@
         app:layout_constraintVertical_bias="0.361"
         app:srcCompat="@mipmap/ic_info2_foreground" />
 
-    <ImageButton
-        android:id="@+id/btnLogout"
-        android:layout_width="48dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAboutUs"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_keluarrr_foreground" />
 
     <TextView
         android:id="@+id/textView21"
@@ -72,18 +60,6 @@
         app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:text="Log Out"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnLogout"
-        app:layout_constraintStart_toStartOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView13"
