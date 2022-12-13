@@ -25,10 +25,6 @@ class SettingActivity : AppCompatActivity() {
         btnAboutus = findViewById(R.id.btnAboutUs)
         btnLogout = findViewById(R.id.btnLogout)
 
-        val sharedPreference =  getSharedPreferences(
-            "app_preference", Context.MODE_PRIVATE
-        )
-
         btnAccount.setOnClickListener {
             Intent(this, EditAccount::class.java).also {
                 startActivity(it)
@@ -42,15 +38,21 @@ class SettingActivity : AppCompatActivity() {
         }
 
         btnLogout.setOnClickListener {
-                var editor = sharedPreference.edit()
-                editor.clear()
-                editor.remove("email")
-                editor.commit()
+            val sharedPreference =  getSharedPreferences(
+                "app_preference", Context.MODE_PRIVATE
+            )
+            var name = sharedPreference.getString("email", "[No email found]").toString()
 
-                val intent = Intent(this, SigninActivity::class.java)
-                startActivity(intent)
 
-                finish()
+            var editor = sharedPreference.edit()
+            editor.clear()
+            editor.remove("email")
+            editor.commit()
+
+            val intent = Intent(this, SigninActivity::class.java)
+            startActivity(intent)
+
+            finish()
         }
     }
 }
