@@ -41,7 +41,6 @@ class SigninActivity : AppCompatActivity() {
         etPassword = findViewById(R.id.etPassword)
 
         btnLogIn.setOnClickListener {
-
            signIn(Email.text.toString(), etPassword.text.toString())
         }
     }

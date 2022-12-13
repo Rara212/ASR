@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var labelHeader: TextView
     lateinit var spQuadrant : Spinner
 
-    val apiKey = " "
+    val apiKey = ""
     val token = "Bearer $apiKey"
 
     val Items = ArrayList<Model>()
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
         var email = sharedPreference.getString("email", "[No email found]").toString()
 
-        if (email.isEmpty()) {
+        if (email.isNotEmpty()) {
             super.onBackPressed()
             return
         }
