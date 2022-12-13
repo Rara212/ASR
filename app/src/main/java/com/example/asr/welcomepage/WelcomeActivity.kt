@@ -1,5 +1,6 @@
 package com.example.asr.welcomepage
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +19,15 @@ class WelcomeActivity : AppCompatActivity() {
         btnSignIn = findViewById(R.id.btnSignIn)
         btnNewAccount = findViewById(R.id.btnNewAccount)
 
+        val sharedPreference =  getSharedPreferences(
+            "app_preference", Context.MODE_PRIVATE
+        )
+
+        var email = sharedPreference.getString("email", "").toString()
+        if (email.isNotEmpty()) {
+           goToHomePage()
+        }
+
         /*Moving to main activity*/
         btnSignIn.setOnClickListener {
             Intent(this, SigninActivity::class.java).also {
@@ -30,5 +40,10 @@ class WelcomeActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+    }
+    private fun goToHomePage() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         listTodo = findViewById(R.id.list_todo)
-        labelHeader = findViewById(R.id.label_header)
+        labelHeader = findViewById(R.id.lblHeader)
 
         var result = intent.getStringExtra("result")
         labelHeader.text = "Hello, $result?"
@@ -61,6 +61,13 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        /*Adding shared preference*/
+        val sharedPreference = getSharedPreferences(
+            "app_preference", Context.MODE_PRIVATE
+        )
+
+        var name = sharedPreference.getString("email", "[No email found]").toString()
+        lblHeader.text = "Hello, $name"
 
         /*Intent to add activity*/
         btnadd_activity.setOnClickListener {
@@ -79,5 +86,18 @@ class MainActivity : AppCompatActivity() {
 
         /*making spinner responsive*/
 
+    }
+
+    override fun onBackPressed() {
+        val sharedPreference =  getSharedPreferences(
+            "app_preference", Context.MODE_PRIVATE
+        )
+
+        var email = sharedPreference.getString("email", "[No email found]").toString()
+
+        if (email.isEmpty()) {
+            super.onBackPressed()
+            return
+        }
     }
 }

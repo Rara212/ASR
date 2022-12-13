@@ -1,11 +1,13 @@
 package com.example.asr.settings
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
 import com.example.asr.R
+import com.example.asr.welcomepage.SigninActivity
 import com.example.asr.welcomepage.WelcomeActivity
 
 class SettingActivity : AppCompatActivity() {
@@ -23,6 +25,10 @@ class SettingActivity : AppCompatActivity() {
         btnAboutus = findViewById(R.id.btnAboutUs)
         btnLogout = findViewById(R.id.btnLogout)
 
+        val sharedPreference =  getSharedPreferences(
+            "app_preference", Context.MODE_PRIVATE
+        )
+
         btnAccount.setOnClickListener {
             Intent(this, EditAccount::class.java).also {
                 startActivity(it)
@@ -36,9 +42,15 @@ class SettingActivity : AppCompatActivity() {
         }
 
         btnLogout.setOnClickListener {
-            Intent(this, WelcomeActivity::class.java).also {
-                startActivity(it)
-            }
+                var editor = sharedPreference.edit()
+                editor.clear()
+                editor.remove("email")
+                editor.commit()
+
+                val intent = Intent(this, SigninActivity::class.java)
+                startActivity(intent)
+
+                finish()
         }
     }
 }

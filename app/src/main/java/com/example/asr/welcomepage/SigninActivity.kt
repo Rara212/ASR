@@ -24,8 +24,9 @@ class SigninActivity : AppCompatActivity() {
 
     lateinit var btnLogIn: Button
     lateinit var Email: EditText
+    lateinit var etPassword: EditText
 
-    val apiKey = ""
+    val apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1maWZ5d2JnY3FrZmFzbmhjaWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk5NTUxMzYsImV4cCI6MTk4NTUzMTEzNn0.EqjggAQEzg4acUUzrwVxncdxNOiGP3VYO9Wd2yRz_LA"
     val token = "Bearer $apiKey"
 
     val todoApi = RetrofitHelper.getInstance().create(UserApi::class.java)
@@ -37,30 +38,11 @@ class SigninActivity : AppCompatActivity() {
 
         btnLogIn = findViewById(R.id.btnLogIn)
         Email = findViewById(R.id.Email)
+        etPassword = findViewById(R.id.etPassword)
+
         btnLogIn.setOnClickListener {
 
-            if (Email.text.isEmpty()) {
-                Toast.makeText(
-                    applicationContext,
-                    "Harap isi email terlebih dahulu",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return@setOnClickListener
-            }
-
-            var Email = Email.text.toString()
-
-            val sharedPreference = getSharedPreferences(
-                "app_preference", Context.MODE_PRIVATE
-            )
-
-            var editor = sharedPreference.edit()
-            editor.putString("email", Email)
-            editor.commit()
-
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("result", Email)
-            startActivity(intent)
+           signIn(Email.text.toString(), etPassword.text.toString())
         }
     }
 
@@ -87,7 +69,6 @@ class SigninActivity : AppCompatActivity() {
                 var email = jsonResponse.getJSONObject("user").get("email").toString()
                 msg = "Successfully login! Welcome back: $email"
 
-
                 val sharedPreference = getSharedPreferences(
                     "app_preference", Context.MODE_PRIVATE
                 )
@@ -106,15 +87,16 @@ class SigninActivity : AppCompatActivity() {
                     msg,
                     Toast.LENGTH_SHORT
                 ).show()
+
                 if (!failed) {
-                    goToHome();
+                    goToHome()
                 }
             }
         }
     }
 
     private fun goToHome() {
-        val intent = Intent(this, SettingActivity::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }

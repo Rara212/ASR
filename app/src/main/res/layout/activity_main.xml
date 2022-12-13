@@ -8,7 +8,7 @@
     tools:context=".homepage.MainActivity">
 
     <TextView
-        android:id="@+id/label_header"
+        android:id="@+id/lblHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello, name!"
