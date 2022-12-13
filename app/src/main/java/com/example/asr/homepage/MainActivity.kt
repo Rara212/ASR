@@ -11,6 +11,7 @@ import com.example.asr.*
 import com.example.asr.api.ActivityAPI
 import com.example.asr.api.RetrofitHelper
 import com.example.asr.settings.SettingActivity
+import com.example.asr.welcomepage.SigninActivity
 import com.example.asr.welcomepage.list.Model
 import com.example.asr.welcomepage.list.TodoAdapter
 import kotlinx.android.synthetic.main.activity_main.*
@@ -48,10 +49,10 @@ class MainActivity : AppCompatActivity() {
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
 
-        btnadd_activity = findViewById(R.id.btnAddList)
+        btnadd_activity = findViewById(R.id.fabAddList)
         btnSetting = findViewById(R.id.btnSetting)
         spQuadrant = findViewById(R.id.spinner)
-        btnLogout = findViewById(R.id.btnSignOut)
+        btnLogout = findViewById(R.id.btnLogout)
 
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -88,8 +89,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        btnLogout.setOnClickListener {
+            var editor = sharedPreference.edit()
+            editor.clear()
+            editor.remove("email")
+            editor.commit()
 
-        /*making spinner responsive*/
+            val intent = Intent(this, SigninActivity::class.java)
+            startActivity(intent)
+
+            finish()
+        }
 
     }
 

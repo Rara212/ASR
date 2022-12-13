@@ -13,12 +13,8 @@
         android:layout_height="wrap_content"
         android:text="Hello, name!"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.125"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078" />
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="54dp" />
 
     <TextView
         android:id="@+id/textView"
@@ -27,87 +23,52 @@
         android:text="Your Schedule!"
         android:textSize="48sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.212"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.133" />
+        tools:layout_editor_absoluteX="41dp"
+        tools:layout_editor_absoluteY="83dp" />
+
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="371dp"
         android:layout_height="74dp"
-        android:layout_marginTop="24dp"
         android:entries="@array/planets_array"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/btnAddList"
-        android:layout_width="76dp"
-        android:layout_height="62dp"
-        android:contentDescription="Add Activity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.907"
-        app:srcCompat="@mipmap/ic_addlist2_foreground" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="ADD ACTIVITY"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.467"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="0.861" />
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="216dp" />
 
     <ImageButton
         android:id="@+id/btnSetting"
         android:layout_width="57dp"
         android:layout_height="58dp"
-        android:layout_marginTop="4dp"
         android:contentDescription="Settings"
-        app:layout_constraintBottom_toTopOf="@+id/spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.841"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_settings2_foreground" />
+        app:srcCompat="@mipmap/ic_settings2_foreground"
+        tools:layout_editor_absoluteX="298dp"
+        tools:layout_editor_absoluteY="4dp" />
 
     <ListView
         android:id="@+id/list_todo"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnAddList"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_width="406dp"
+        android:layout_height="443dp"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="290dp" />
 
     <ImageButton
-        android:id="@+id/btnSignOut"
+        android:id="@+id/btnLogout"
         android:layout_width="56dp"
         android:layout_height="59dp"
-        android:layout_marginStart="19dp"
-        app:layout_constraintBottom_toTopOf="@+id/lblHeader"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btnSetting"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@mipmap/ic_logout5_foreground" />
+        app:srcCompat="@mipmap/ic_logout5_foreground"
+        tools:layout_editor_absoluteX="355dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddList"
+        android:layout_width="75dp"
+        android:layout_height="70dp"
+        android:layout_gravity="end|bottom"
+        app:backgroundTint="@color/cardview_light_background"
+        app:elevation="6dp"
+        app:fabSize="normal"
+        app:srcCompat="@mipmap/ic_addlist2_foreground"
+        tools:layout_editor_absoluteX="171dp"
+        tools:layout_editor_absoluteY="645dp" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
