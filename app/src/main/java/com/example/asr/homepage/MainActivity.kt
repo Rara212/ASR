@@ -14,11 +14,12 @@ import com.example.asr.settings.SettingActivity
 import com.example.asr.welcomepage.SigninActivity
 import com.example.asr.welcomepage.list.Model
 import com.example.asr.welcomepage.list.TodoAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView
-    lateinit var btnadd_activity: ImageButton
+    lateinit var btnadd_activity: FloatingActionButton
     lateinit var btnSetting: ImageButton
     lateinit var labelHeader: TextView
     lateinit var spQuadrant : Spinner
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         listTodo = findViewById(R.id.list_todo)
         labelHeader = findViewById(R.id.lblHeader)
