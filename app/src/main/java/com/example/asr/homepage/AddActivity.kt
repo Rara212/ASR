@@ -37,13 +37,13 @@ class AddActivity : AppCompatActivity() {
             "app_preference", Context.MODE_PRIVATE
         )
 
-        var userid = sharedPreference.getString("userid", "[No email found]")
+        var userid = sharedPreference.getString("userid", "[No userid found]")
 
         btnAdd.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
                 val data = ActivityData(userid = "$userid", activity = etActivity.text.toString(), category = type.text.toString())
                 val response = ActivityApi.create(token = token, apiKey = apiKey, activityData = data)
-                
+
                 Toast.makeText(
                     applicationContext,
                     "New activity successfully added",
