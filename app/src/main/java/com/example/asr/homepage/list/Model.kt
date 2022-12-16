@@ -1,4 +1,4 @@
-package com.example.asr.welcomepage.list
+package com.example.asr.homepage.list
 
 data class Model(
     val Id: String? = null,

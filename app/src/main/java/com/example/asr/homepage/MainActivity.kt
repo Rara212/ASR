@@ -10,10 +10,10 @@ import android.widget.*
 import com.example.asr.*
 import com.example.asr.api.ActivityAPI
 import com.example.asr.api.RetrofitHelper
-import com.example.asr.settings.SettingActivity
+import com.example.asr.homepage.settings.SettingActivity
 import com.example.asr.welcomepage.SigninActivity
-import com.example.asr.welcomepage.list.Model
-import com.example.asr.welcomepage.list.TodoAdapter
+import com.example.asr.homepage.list.Model
+import com.example.asr.homepage.list.TodoAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 

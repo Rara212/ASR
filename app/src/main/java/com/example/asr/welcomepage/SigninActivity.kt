@@ -14,7 +14,7 @@ import com.example.asr.R
 import com.example.asr.api.RetrofitHelper
 import com.example.asr.api.UserApi
 import com.example.asr.data.Users
-import com.example.asr.settings.SettingActivity
+import com.example.asr.homepage.settings.SettingActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

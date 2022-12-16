@@ -1,4 +1,4 @@
-package com.example.asr.welcomepage.list
+package com.example.asr.homepage.list
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.example.asr.settings
+package com.example.asr.homepage.settings
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

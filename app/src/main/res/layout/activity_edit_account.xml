@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fffaf1"
-    tools:context=".settings.EditAccount">
+    tools:context=".homepage.settings.EditAccount">
 
     <TextView
         android:id="@+id/textView"
