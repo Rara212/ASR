@@ -10,21 +10,20 @@
 
     <TextView
         android:id="@+id/lblHeader"
-        android:layout_width="149dp"
-        android:layout_height="31dp"
+        android:layout_width="379dp"
+        android:layout_height="53dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:text="Hello, name!"
-        android:textSize="24sp"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSetting" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="256dp"
-        android:layout_height="125dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="64dp"
+        android:layout_width="298dp"
+        android:layout_height="106dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="Your Schedule!"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -35,38 +34,39 @@
         android:id="@+id/spinner"
         android:layout_width="371dp"
         android:layout_height="74dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:entries="@array/planets_array"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageButton
         android:id="@+id/btnSetting"
-        android:layout_width="53dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="47dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="236dp"
+        android:layout_marginTop="4dp"
         android:contentDescription="Settings"
-        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_settings2_foreground" />
 
     <ListView
         android:id="@+id/list_todo"
-        android:layout_width="406dp"
-        android:layout_height="381dp"
+        android:layout_width="328dp"
+        android:layout_height="387dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <ImageButton
         android:id="@+id/btnLogout"
-        android:layout_width="49dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="44dp"
+        android:layout_width="44dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toEndOf="@+id/btnSetting"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_logout5_foreground" />
@@ -76,8 +76,8 @@
         android:layout_width="89dp"
         android:layout_height="40dp"
         android:layout_gravity="end|bottom"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="48dp"
         android:src="@drawable/ic_baseline_post_add_555"
         app:backgroundTint="@color/cardview_light_background"
         app:elevation="4dp"
