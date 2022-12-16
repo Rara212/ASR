@@ -7,20 +7,23 @@
     android:background="#fffaf1"
     tools:context=".homepage.MainActivity">
 
+
     <TextView
         android:id="@+id/lblHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
         android:text="Hello, name!"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="217dp"
         android:layout_height="109dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Your Schedule!"
         android:textSize="48sp"
@@ -42,7 +45,8 @@
         android:id="@+id/btnSetting"
         android:layout_width="59dp"
         android:layout_height="56dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="48dp"
         android:contentDescription="Settings"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent"
@@ -60,8 +64,8 @@
         android:id="@+id/btnLogout"
         android:layout_width="56dp"
         android:layout_height="59dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
         app:layout_constraintStart_toEndOf="@+id/btnSetting"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_logout5_foreground" />
