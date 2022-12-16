@@ -1,5 +1,6 @@
 package com.example.asr.homepage
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 
 class AddActivity : AppCompatActivity() {
 
@@ -29,14 +31,19 @@ class AddActivity : AppCompatActivity() {
 
         btnAdd = findViewById(R.id.btnAdd)
         etActivity = findViewById(R.id.etActivity)
+        val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
+        val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
+        val sharedPreference = getSharedPreferences(
+            "app_preference", Context.MODE_PRIVATE
+        )
+
+        var userid = sharedPreference.getString("userid", "[No email found]")
 
         btnAdd.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
-                val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
-                val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
-                val data = ActivityData(activity = etActivity.text.toString(), category = type.text.toString())
+                val data = ActivityData(userid = "$userid", activity = etActivity.text.toString(), category = type.text.toString())
                 val response = ActivityApi.create(token = token, apiKey = apiKey, activityData = data)
-
+                
                 Toast.makeText(
                     applicationContext,
                     "New activity successfully added",
