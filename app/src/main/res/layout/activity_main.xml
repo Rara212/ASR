@@ -10,9 +10,9 @@
 
     <TextView
         android:id="@+id/lblHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_width="149dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:text="Hello, name!"
         android:textSize="24sp"
@@ -21,10 +21,10 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="217dp"
-        android:layout_height="109dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="256dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="64dp"
         android:text="Your Schedule!"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -43,10 +43,10 @@
 
     <ImageButton
         android:id="@+id/btnSetting"
-        android:layout_width="59dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="53dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
         android:contentDescription="Settings"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent"
@@ -54,18 +54,19 @@
 
     <ListView
         android:id="@+id/list_todo"
-        android:layout_width="458dp"
-        android:layout_height="576dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="406dp"
+        android:layout_height="381dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <ImageButton
         android:id="@+id/btnLogout"
-        android:layout_width="56dp"
-        android:layout_height="59dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="44dp"
         app:layout_constraintStart_toEndOf="@+id/btnSetting"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_logout5_foreground" />
@@ -73,12 +74,14 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddList"
         android:layout_width="89dp"
-        android:layout_height="70dp"
+        android:layout_height="40dp"
         android:layout_gravity="end|bottom"
-        android:src="@drawable/ic_baseline_post_add_74"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="52dp"
+        android:src="@drawable/ic_baseline_post_add_555"
         app:backgroundTint="@color/cardview_light_background"
-        app:elevation="47dp"
-        app:fabSize="normal"
+        app:elevation="4dp"
+        app:fabSize="mini"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
