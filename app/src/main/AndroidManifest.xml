@@ -14,7 +14,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ASR"
         tools:targetApi="31">
-
+        <activity
+            android:name=".UpdateActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".homepage.settings.AboutUs"
             android:exported="false">
