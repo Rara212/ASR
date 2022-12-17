@@ -16,6 +16,9 @@ import com.example.asr.homepage.list.Model
 import com.example.asr.homepage.list.TodoAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView
@@ -36,36 +39,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         listTodo = findViewById(R.id.list_todo)
         labelHeader = findViewById(R.id.lblHeader)
-
-        var result = intent.getStringExtra("result")
-        labelHeader.text = "Hello, $result?"
-
-        val Items = ArrayList<Model>()
-        Items.add(Model("1", "", "Hello"))
-        Items.add(Model("2", "", "Go home early"))
-        Items.add(Model("3", "", "MAP Project"))
-
-        val adapter = TodoAdapter(this, R.layout.todo_item, Items)
-        listTodo.adapter = adapter
-
-        btnadd_activity = findViewById(R.id.fabAddList)
-        btnSetting = findViewById(R.id.btnSetting)
-        spQuadrant = findViewById(R.id.spinner)
-        btnLogout = findViewById(R.id.btnLogout)
-
-        spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
-               Toast.makeText(this@MainActivity,
-                   "You selected ${adapterView?.getItemAtPosition(position).toString()}",
-                   Toast.LENGTH_LONG).show()
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
 
         /*Adding shared preference*/
         val sharedPreference = getSharedPreferences(
@@ -73,7 +48,45 @@ class MainActivity : AppCompatActivity() {
         )
 
         var name = sharedPreference.getString("email", "[No email found]").toString()
-        lblHeader.text = "Hello, $name"
+        labelHeader.text = "Hello, $name"
+
+        var userid = sharedPreference.getString("userid", "[No userid found]")
+
+
+        btnadd_activity = findViewById(R.id.fabAddList)
+        btnSetting = findViewById(R.id.btnSetting)
+        spQuadrant = findViewById(R.id.spinner)
+        btnLogout = findViewById(R.id.btnLogout)
+
+
+        /*show activity based on spinner selection*/
+        spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+               /*Toast.makeText(this@MainActivity,
+                   "You selected ${adapterView?.getItemAtPosition(position).toString()}",
+                   Toast.LENGTH_LONG).show()*/
+                CoroutineScope(Dispatchers.Main).launch {
+                    val response = ActivityAPI.get(token = token, apiKey = apiKey)
+
+                    response.body()?.forEach {
+                        Items.add(
+                            Model(
+                                UserId = it.activityid,
+                                Id = it.userid,
+                                Todolist = it.activity,
+                                Category = it.category
+                            )
+                        )
+                    }
+                    setList(Items)
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+        }
+
+
 
         /*Intent to add activity*/
         btnadd_activity.setOnClickListener {
@@ -102,6 +115,11 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    fun setList(Items: ArrayList<Model>) {
+        val adapter = TodoAdapter(this, R.layout.todo_item, Items)
+        listTodo.adapter = adapter
     }
 
     override fun onBackPressed() {
