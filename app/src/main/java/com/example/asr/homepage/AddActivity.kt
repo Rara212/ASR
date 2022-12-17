@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONObject
 
 class AddActivity : AppCompatActivity() {
 
