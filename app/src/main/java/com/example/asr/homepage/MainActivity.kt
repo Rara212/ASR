@@ -16,6 +16,7 @@ import com.example.asr.homepage.list.Model
 import com.example.asr.homepage.list.TodoAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView
@@ -36,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         listTodo = findViewById(R.id.list_todo)
         labelHeader = findViewById(R.id.lblHeader)
 
@@ -51,10 +51,34 @@ class MainActivity : AppCompatActivity() {
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
 
-        btnadd_activity = findViewById(R.id.fabAddList)
-        btnSetting = findViewById(R.id.btnSetting)
-        spQuadrant = findViewById(R.id.spinner)
-        btnLogout = findViewById(R.id.btnLogout)
+
+        listTodo.setOnItemLongClickListener { adapterView, view, position, id ->
+            val item = adapterView.getItemAtPosition(position) as Model
+
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Are you sure you want to Delete?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    val id = item.Id.toString()
+                    var queryId = "eq.$id"
+                    deleteDatabase(queryId)
+
+                    var title = item.Todolist.toString()
+                    Toast.makeText(
+                        applicationContext,
+                        "Berhasil menghapus todo: $title",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.dismiss()
+                }
+
+            btnadd_activity = findViewById(R.id.fabAddList)
+            btnSetting = findViewById(R.id.btnSetting)
+            spQuadrant = findViewById(R.id.spinner)
+            btnLogout = findViewById(R.id.btnLogout)
 
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
