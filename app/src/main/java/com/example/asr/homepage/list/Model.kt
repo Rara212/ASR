@@ -5,5 +5,5 @@ data class Model(
     val Id: String? = null,
     val Icon: String? = null,
     val Todolist: String? = null,
-    /*val Category: String? = null,*/
+    val Category: String? = null,
 )

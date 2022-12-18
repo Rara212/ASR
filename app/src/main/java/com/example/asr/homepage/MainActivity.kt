@@ -17,6 +17,7 @@ import com.example.asr.homepage.list.TodoAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.appcompat.app.AlertDialog
+import com.example.asr.homepage.settings.UpdateActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -57,17 +58,28 @@ class MainActivity : AppCompatActivity() {
         lblHeader.text = "Hello, $email"
         var userid = sharedPreference.getString("userid", "[No userid found]")
 
+        /*update functionality*/
+        listTodo.setOnItemClickListener{ adapterView, view, position, id ->
+            val item = adapterView.getItemAtPosition(position) as Model
+            val intent = Intent(this, UpdateActivity::class.java)
+            intent.putExtra("activityid", item.Id)
+            intent.putExtra("activity", item.Todolist)
+            intent.putExtra("category", item.Category)
+            startActivity(intent)
+        }
+
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     var category = adapterView?.getItemAtPosition(position).toString()
                     var queryUserId = "eq.$userid"
                     var queryCategory = "eq.$category"
                     getItem(category = queryCategory, userid = queryUserId)
-
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
+
             }
+
 
         /*Intent to add activity*/
         btnadd_activity.setOnClickListener{
@@ -109,7 +121,7 @@ class MainActivity : AppCompatActivity() {
                         Id = it.activityid,
                         /*UserId = it.userid,*/
                         Todolist = it.activity,
-                        /*Category = it.category*/
+                        Category = it.category
                     )
                 )
             }

@@ -26,21 +26,20 @@ interface ActivityAPI {
         @Header("apikey") apiKey: String,
         @Body activityData: ActivityData
     )
-    /*
-    @PATCH("/rest/v1/todo")
+
+    @PATCH("/rest/v1/activities")
     suspend fun update(
         @Header("Authorization") token: String,
         @Header("apikey") apiKey: String,
-        @Query("id") idQuery : String,
+        @Query("activityid") idQuery : String,
         @Body activityData: ActivityData
     ) : Response<Unit>
 
-    @DELETE("/rest/v1/todo")
+    @DELETE("/rest/v1/activities")
     suspend fun delete(
         @Header("Authorization") token: String,
         @Header("apikey") apiKey: String,
-        @Query("id") idQuery : String
+        @Query("activityid") idQuery : String
     ) : Response<Unit>
 
-     */
 }
