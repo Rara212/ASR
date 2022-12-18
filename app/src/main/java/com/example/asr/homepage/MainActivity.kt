@@ -56,8 +56,9 @@ class MainActivity : AppCompatActivity() {
             "app_preference", Context.MODE_PRIVATE
         )
 
-        var name = sharedPreference.getString("email", "[No email found]").toString()
-        lblHeader.text = "Hello, $name"
+        var email = sharedPreference.getString("email", "[No email found]").toString()
+        lblHeader.text = "Hello, $email"
+        var userid = sharedPreference.getString("userid", "[No userid found]")
 
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -65,9 +66,11 @@ class MainActivity : AppCompatActivity() {
                        "You selected ${adapterView?.getItemAtPosition(position).toString()}",
                        Toast.LENGTH_LONG).show()*/
                     var category = adapterView?.getItemAtPosition(position).toString()
+                    /*
                     val item = adapterView?.getItemAtPosition(position) as Model
                     val activityid = item.Id.toString()
                     val userid = item.UserId.toString()
+                     */
                     var queryUserId = "eq.$userid"
                     var queryCategory = "eq.$category"
                     getItem(category = queryCategory, userid = queryUserId)

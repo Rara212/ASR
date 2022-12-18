@@ -12,7 +12,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.Query
 
 interface ActivityAPI {
-    @GET("/rest/v1/activities?select=*&category=eq.category&userid=eq.userid")
+    @GET("/rest/v1/activities?category=eq.category&userid=eq.userid&select=*")
     suspend fun get(
         @Header("Authorization") token: String,
         @Header("apikey") apiKey: String
@@ -24,7 +24,7 @@ interface ActivityAPI {
         @Header("apikey") apiKey: String,
         @Body activityData: ActivityData
     )
-
+    /*
     @PATCH("/rest/v1/todo")
     suspend fun update(
         @Header("Authorization") token: String,
@@ -39,4 +39,6 @@ interface ActivityAPI {
         @Header("apikey") apiKey: String,
         @Query("id") idQuery : String
     ) : Response<Unit>
+
+     */
 }
