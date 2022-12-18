@@ -30,8 +30,7 @@ class AddActivity : AppCompatActivity() {
 
         btnAdd = findViewById(R.id.btnAdd)
         etActivity = findViewById(R.id.etActivity)
-        val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
-        val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
+
         val sharedPreference = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE
         )
@@ -40,6 +39,8 @@ class AddActivity : AppCompatActivity() {
 
         btnAdd.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
+                val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
+                val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
                 val data = ActivityData(userid = "$userid", activity = etActivity.text.toString(), category = type.text.toString())
                 val response = ActivityApi.create(token = token, apiKey = apiKey, activityData = data)
 

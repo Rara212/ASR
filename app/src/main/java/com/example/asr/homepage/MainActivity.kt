@@ -17,14 +17,17 @@ import com.example.asr.homepage.list.TodoAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
 import androidx.appcompat.app.AlertDialog
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView
     lateinit var btnadd_activity: FloatingActionButton
     lateinit var btnSetting: ImageButton
     lateinit var labelHeader: TextView
-    lateinit var spQuadrant : Spinner
-    lateinit var btnLogout : ImageButton
+    lateinit var spQuadrant: Spinner
+    lateinit var btnLogout: ImageButton
 
     val apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1maWZ5d2JnY3FrZmFzbmhjaWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk5NTUxMzYsImV4cCI6MTk4NTUzMTEzNn0.EqjggAQEzg4acUUzrwVxncdxNOiGP3VYO9Wd2yRz_LA"
     val token = "Bearer $apiKey"
@@ -43,53 +46,13 @@ class MainActivity : AppCompatActivity() {
         var result = intent.getStringExtra("result")
         labelHeader.text = "Hello, $result?"
 
-        val Items = ArrayList<Model>()
-        Items.add(Model("1", "", "Hello"))
-        Items.add(Model("2", "", "Go home early"))
-        Items.add(Model("3", "", "MAP Project"))
-
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
 
-
-        listTodo.setOnItemLongClickListener { adapterView, view, position, id ->
-            val item = adapterView.getItemAtPosition(position) as Model
-
-            val builder = AlertDialog.Builder(this)
-            builder.setMessage("Are you sure you want to Delete?")
-                .setCancelable(false)
-                .setPositiveButton("Yes") { dialog, id ->
-                    val id = item.Id.toString()
-                    var queryId = "eq.$id"
-                    deleteDatabase(queryId)
-
-                    var title = item.Todolist.toString()
-                    Toast.makeText(
-                        applicationContext,
-                        "Berhasil menghapus todo: $title",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                }
-                .setNegativeButton("No") { dialog, id ->
-                    dialog.dismiss()
-                }
-
-            btnadd_activity = findViewById(R.id.fabAddList)
-            btnSetting = findViewById(R.id.btnSetting)
-            spQuadrant = findViewById(R.id.spinner)
-            btnLogout = findViewById(R.id.btnLogout)
-
-        spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
-               Toast.makeText(this@MainActivity,
-                   "You selected ${adapterView?.getItemAtPosition(position).toString()}",
-                   Toast.LENGTH_LONG).show()
-            }
-
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
+        btnadd_activity = findViewById(R.id.fabAddList)
+        btnSetting = findViewById(R.id.btnSetting)
+        spQuadrant = findViewById(R.id.spinner)
+        btnLogout = findViewById(R.id.btnLogout)
 
         /*Adding shared preference*/
         val sharedPreference = getSharedPreferences(
@@ -99,22 +62,46 @@ class MainActivity : AppCompatActivity() {
         var name = sharedPreference.getString("email", "[No email found]").toString()
         lblHeader.text = "Hello, $name"
 
+        spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    /*Toast.makeText(this@MainActivity,
+                       "You selected ${adapterView?.getItemAtPosition(position).toString()}",
+                       Toast.LENGTH_LONG).show()*/
+                    CoroutineScope(Dispatchers.Main).launch {
+                        val response = ActivityAPI.get(token = token, apiKey = apiKey)
+
+                        response.body()?.forEach {
+                            Items.add(
+                                Model(
+                                    Id = it.activityid,
+                                    UserId = it.userid,
+                                    Todolist = it.activity,
+                                    Category = it.category
+                                )
+                            )
+                        }
+                        setList(Items)
+                    }
+                }
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                }
+            }
+
         /*Intent to add activity*/
-        btnadd_activity.setOnClickListener {
+        btnadd_activity.setOnClickListener{
             Intent(this, AddActivity::class.java).also {
                 startActivity(it)
             }
         }
-
         /*Intent to go to setting*/
-        btnSetting.setOnClickListener {
+        btnSetting.setOnClickListener{
             Intent(this, SettingActivity::class.java).also {
                 startActivity(it)
 
             }
         }
-
-        btnLogout.setOnClickListener {
+        /*Logout functionality*/
+        btnLogout.setOnClickListener{
             var editor = sharedPreference.edit()
             editor.clear()
             editor.remove("email")
@@ -128,8 +115,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+
+    /*showing the to-do list*/
+    fun setList(Items: ArrayList<Model>) {
+        val adapter = TodoAdapter(this, R.layout.todo_item, Items)
+        listTodo.adapter = adapter
+    }
     override fun onBackPressed() {
-        val sharedPreference =  getSharedPreferences(
+        val sharedPreference = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE
         )
 
