@@ -43,9 +43,6 @@ class MainActivity : AppCompatActivity() {
         listTodo = findViewById(R.id.list_todo)
         labelHeader = findViewById(R.id.lblHeader)
 
-        var result = intent.getStringExtra("result")
-        labelHeader.text = "Hello, $result?"
-
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
 
@@ -67,21 +64,15 @@ class MainActivity : AppCompatActivity() {
                     /*Toast.makeText(this@MainActivity,
                        "You selected ${adapterView?.getItemAtPosition(position).toString()}",
                        Toast.LENGTH_LONG).show()*/
-                    CoroutineScope(Dispatchers.Main).launch {
-                        val response = ActivityAPI.get(token = token, apiKey = apiKey)
+                    var category = adapterView?.getItemAtPosition(position).toString()
+                    val item = adapterView?.getItemAtPosition(position) as Model
+                    val activityid = item.Id.toString()
+                    val userid = item.UserId.toString()
+                    var queryUserId = "eq.$userid"
+                    var queryCategory = "eq.$category"
+                    getItem(category = queryCategory, userid = queryUserId)
 
-                        response.body()?.forEach {
-                            Items.add(
-                                Model(
-                                    Id = it.activityid,
-                                    UserId = it.userid,
-                                    Todolist = it.activity,
-                                    Category = it.category
-                                )
-                            )
-                        }
-                        setList(Items)
-                    }
+
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
@@ -113,6 +104,24 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+    /*function getItem()*/
+    fun getItem(category: String, userid: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            val response = ActivityAPI.get(token = token, apiKey = apiKey)
+
+            response.body()?.forEach {
+                Items.add(
+                    Model(
+                        Id = it.activityid,
+                        UserId = it.userid,
+                        Todolist = it.activity,
+                        Category = it.category
+                    )
+                )
+            }
+            setList(Items)
+        }
     }
 
 
