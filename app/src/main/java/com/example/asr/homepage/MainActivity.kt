@@ -43,9 +43,6 @@ class MainActivity : AppCompatActivity() {
         listTodo = findViewById(R.id.list_todo)
         labelHeader = findViewById(R.id.lblHeader)
 
-        val adapter = TodoAdapter(this, R.layout.todo_item, Items)
-        listTodo.adapter = adapter
-
         btnadd_activity = findViewById(R.id.fabAddList)
         btnSetting = findViewById(R.id.btnSetting)
         spQuadrant = findViewById(R.id.spinner)
@@ -62,19 +59,10 @@ class MainActivity : AppCompatActivity() {
 
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    /*Toast.makeText(this@MainActivity,
-                       "You selected ${adapterView?.getItemAtPosition(position).toString()}",
-                       Toast.LENGTH_LONG).show()*/
                     var category = adapterView?.getItemAtPosition(position).toString()
-                    /*
-                    val item = adapterView?.getItemAtPosition(position) as Model
-                    val activityid = item.Id.toString()
-                    val userid = item.UserId.toString()
-                     */
                     var queryUserId = "eq.$userid"
                     var queryCategory = "eq.$category"
                     getItem(category = queryCategory, userid = queryUserId)
-
 
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -108,18 +96,19 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
     /*function getItem()*/
     fun getItem(category: String, userid: String) {
         CoroutineScope(Dispatchers.Main).launch {
-            val response = ActivityAPI.get(token = token, apiKey = apiKey)
+            val response = ActivityAPI.get(token = token, apiKey = apiKey, category = category, userid = userid)
 
             response.body()?.forEach {
                 Items.add(
                     Model(
                         Id = it.activityid,
-                        UserId = it.userid,
+                        /*UserId = it.userid,*/
                         Todolist = it.activity,
-                        Category = it.category
+                        /*Category = it.category*/
                     )
                 )
             }
@@ -127,12 +116,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     /*showing the to-do list*/
     fun setList(Items: ArrayList<Model>) {
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
+    /*making sure users can't go to login page once they're signed in*/
     override fun onBackPressed() {
         val sharedPreference = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE

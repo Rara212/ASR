@@ -12,10 +12,12 @@ import retrofit2.http.DELETE
 import retrofit2.http.Query
 
 interface ActivityAPI {
-    @GET("/rest/v1/activities?category=eq.category&userid=eq.userid&select=*")
+    @GET("/rest/v1/activities?select=*")
     suspend fun get(
         @Header("Authorization") token: String,
-        @Header("apikey") apiKey: String
+        @Header("apikey") apiKey: String,
+        @Query ("category") category : String,
+        @Query ("userid") userid : String
     ) : Response<List<ActivityItem>>
 
     @POST("/rest/v1/activities")
