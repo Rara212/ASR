@@ -37,8 +37,9 @@ class UpdateActivity : AppCompatActivity() {
         btnUpdate = findViewById(R.id.btnUpdate)
 
         id = intent.getStringExtra("activityid").toString()
+        var activityidQuery = "eq.$id"
 
-        etActivity.setText(intent.getStringExtra("activity").toString())
+        etActivityUpdate.setText(intent.getStringExtra("activity").toString())
 
         val sharedPreference = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE
@@ -50,8 +51,8 @@ class UpdateActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
                 val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
-                val data = ActivityData(userid = "$userid", activity = etActivityUpdate.text.toString(), category = type.text.toString())
-                val response = activityApi.update(token = token, apiKey = apiKey, idQuery = id, activityData = data)
+                val data = ActivityData(userid = "$userid", activity = etActivityUpdate.text.toString(), category = type.text.toString(), activityid = activityidQuery)
+                val response = activityApi.update(token = token, apiKey = apiKey, idQuery = activityidQuery, activityData = data)
 
                 Toast.makeText(
                     applicationContext,
