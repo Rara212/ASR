@@ -48,7 +48,6 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="250dp"
-            android:checked="true"
             android:text="Urgent-Important"
             android:textSize="16.5sp"
             app:layout_constraintBottom_toTopOf="@+id/radioButton2"
