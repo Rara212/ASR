@@ -101,6 +101,7 @@ class MainActivity : AppCompatActivity() {
     fun getItem(category: String, userid: String) {
         CoroutineScope(Dispatchers.Main).launch {
             val response = ActivityAPI.get(token = token, apiKey = apiKey, category = category, userid = userid)
+            var Items = ArrayList<Model>()
 
             response.body()?.forEach {
                 Items.add(
@@ -120,7 +121,6 @@ class MainActivity : AppCompatActivity() {
     fun setList(Items: ArrayList<Model>) {
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
-        adapter.notifyDataSetChanged()
     }
     /*making sure users can't go to login page once they're signed in*/
     override fun onBackPressed() {
