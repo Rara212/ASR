@@ -21,6 +21,7 @@ import com.example.asr.homepage.settings.UpdateActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView
@@ -32,7 +33,6 @@ class MainActivity : AppCompatActivity() {
 
     val apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1maWZ5d2JnY3FrZmFzbmhjaWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk5NTUxMzYsImV4cCI6MTk4NTUzMTEzNn0.EqjggAQEzg4acUUzrwVxncdxNOiGP3VYO9Wd2yRz_LA"
     val token = "Bearer $apiKey"
-
     val Items = ArrayList<Model>()
     val ActivityAPI = RetrofitHelper.getInstance().create(ActivityAPI::class.java)
 
@@ -58,8 +58,9 @@ class MainActivity : AppCompatActivity() {
         lblHeader.text = "Hello, $email"
         var userid = sharedPreference.getString("userid", "[No userid found]")
 
+
         /*update functionality*/
-        listTodo.setOnItemClickListener{ adapterView, view, position, id ->
+        listTodo.setOnItemClickListener { adapterView, view, position, id ->
             val item = adapterView.getItemAtPosition(position) as Model
             val intent = Intent(this, UpdateActivity::class.java)
             intent.putExtra("activityid", item.Id)
@@ -67,6 +68,35 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("category", item.Category)
             startActivity(intent)
         }
+
+        /*delete functionality*/
+        listTodo.setOnItemLongClickListener { adapterView, view, position, id ->
+            val item = adapterView.getItemAtPosition(position) as Model
+
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Are you sure you want to Delete?")
+                .setCancelable(false)
+                .setPositiveButton("Yes") { dialog, id ->
+                    val id = item.Id.toString()
+                    var queryId = "eq.$id"
+                    deleteDatabase(queryId)
+
+                    Toast.makeText(
+                        applicationContext,
+                        "Your activity succesfully deleted",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                .setNegativeButton("No") { dialog, id ->
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
+
+            return@setOnItemLongClickListener true
+        }
+        /*delete functionality*/
+
 
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -94,6 +124,7 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
+
         /*Logout functionality*/
         btnLogout.setOnClickListener{
             var editor = sharedPreference.edit()
