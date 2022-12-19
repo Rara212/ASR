@@ -34,7 +34,7 @@ class UpdateActivity : AppCompatActivity() {
         setContentView(R.layout.activity_update)
 
         etActivityUpdate = findViewById(R.id.etActivityUpdate)
-        btnUpdate = findViewById(R.id.btnUpdate)
+        btnUpdate = findViewById(R.id.btnAddupdate)
 
         id = intent.getStringExtra("activityid").toString()
         var activityidQuery = "eq.$id"
