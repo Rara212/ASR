@@ -95,9 +95,9 @@ class MainActivity : AppCompatActivity() {
 
             return@setOnItemLongClickListener true
         }
-        /*delete functionality ended*/
 
 
+        /*Quadrants Activity Filter*/
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     var category = adapterView?.getItemAtPosition(position).toString()
@@ -177,6 +177,28 @@ class MainActivity : AppCompatActivity() {
         if (email.isNotEmpty()) {
             super.onBackPressed()
             return
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        /*Adding shared preference*/
+        val sharedPreference = getSharedPreferences(
+            "app_preference", Context.MODE_PRIVATE
+        )
+        var userid = sharedPreference.getString("userid", "[No userid found]")
+
+        spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                var category = adapterView?.getItemAtPosition(position).toString()
+                var queryUserId = "eq.$userid"
+                var queryCategory = "eq.$category"
+                getItem(category = queryCategory, userid = queryUserId)
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
         }
     }
 }

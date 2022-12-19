@@ -51,7 +51,7 @@ class UpdateActivity : AppCompatActivity() {
             CoroutineScope(Dispatchers.Main).launch {
                 val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
                 val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
-                val data = ActivityData(userid = "$userid", activity = etActivityUpdate.text.toString(), category = type.text.toString(), activityid = activityidQuery)
+                val data = ActivityData(activity = etActivityUpdate.text.toString(), category = type.text.toString())
                 val response = activityApi.update(token = token, apiKey = apiKey, idQuery = activityidQuery, activityData = data)
 
                 Toast.makeText(

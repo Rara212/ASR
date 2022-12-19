@@ -113,7 +113,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etActivity" />
+        app:layout_constraintTop_toBottomOf="@+id/etActivityUpdate" />
 
     <Button
         android:id="@+id/btnAddupdate"
