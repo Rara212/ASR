@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*delete functionality*/
+        /*delete functionality started*/
         listTodo.setOnItemLongClickListener { adapterView, view, position, id ->
             val item = adapterView.getItemAtPosition(position) as Model
 
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
             return@setOnItemLongClickListener true
         }
-        /*delete functionality*/
+        /*delete functionality ended*/
 
 
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -165,6 +165,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
     }
+
     /*making sure users can't go to login page once they're signed in*/
     override fun onBackPressed() {
         val sharedPreference = getSharedPreferences(
