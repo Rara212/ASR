@@ -24,17 +24,19 @@ class WelcomeActivity : AppCompatActivity() {
         )
 
         var email = sharedPreference.getString("email", "").toString()
-        if (email.isNotEmpty()) {
-           goToHomePage()
+        var userid = sharedPreference.getString("userid", "").toString()
+
+        if (email.isNotEmpty()&&userid.isNotEmpty()) {
+            goToHomePage()
         }
 
-        /*Moving to main activity*/
+        /*Moving to sign in activity*/
         btnSignIn.setOnClickListener {
             Intent(this, SigninActivity::class.java).also {
                 startActivity(it)
             }
         }
-        /*Moving to creat account*/
+        /*Moving to create account*/
         btnNewAccount.setOnClickListener {
             Intent(this, CreateAccount::class.java).also {
                 startActivity(it)

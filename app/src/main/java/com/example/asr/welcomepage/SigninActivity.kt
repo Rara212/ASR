@@ -67,7 +67,6 @@ class SigninActivity : AppCompatActivity() {
             if (!failed) {
                 var email = jsonResponse.getJSONObject("user").get("email").toString()
                 var userid = jsonResponse.getJSONObject("user").get("id").toString()
-                var activityid = jsonResponse.getJSONObject("activityid").get("activityid").toString()
                 msg = "Successfully login! Welcome back: $email"
 
                 val sharedPreference = getSharedPreferences(
@@ -77,7 +76,6 @@ class SigninActivity : AppCompatActivity() {
                 var editor = sharedPreference.edit()
                 editor.putString("email", email)
                 editor.putString("userid", userid)
-                editor.putString("activityid", activityid)
                 editor.commit()
 
             } else {
@@ -97,7 +95,6 @@ class SigninActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun goToHome() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
