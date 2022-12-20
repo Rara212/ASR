@@ -55,7 +55,8 @@
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:onClick="checkButton"/>
 
         <RadioButton
             android:id="@+id/rb2"
@@ -69,7 +70,8 @@
             app:layout_constraintBottom_toTopOf="@+id/radioButton3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.17"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="checkButton"/>
 
         <RadioButton
             android:id="@+id/rb3"
@@ -84,7 +86,8 @@
             app:layout_constraintBottom_toTopOf="@+id/radioButton4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="checkButton"/>
 
         <RadioButton
             android:id="@+id/rb4"
@@ -97,7 +100,8 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.19"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:onClick="checkButton"/>
     </RadioGroup>
 
     <TextView
