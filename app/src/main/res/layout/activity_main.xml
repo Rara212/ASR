@@ -55,10 +55,10 @@
 
     <ListView
         android:id="@+id/list_todo"
-        android:layout_width="325dp"
-        android:layout_height="403dp"
+        android:layout_width="396dp"
+        android:layout_height="375dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 

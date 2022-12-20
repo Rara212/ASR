@@ -76,10 +76,10 @@ class MainActivity : AppCompatActivity() {
             val builder = AlertDialog.Builder(this)
             builder.setMessage("Are you sure you want to Delete?")
                 .setCancelable(false)
-                .setPositiveButton("Yes") { dialog, id ->
+                .setPositiveButton("YES") { dialog, id ->
                     val id = item.Id.toString()
                     var queryId = "eq.$id"
-                    deleteDatabase(queryId)
+                    deleteItem(queryId)
 
                     Toast.makeText(
                         applicationContext,
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
                 }
-                .setNegativeButton("No") { dialog, id ->
+                .setNegativeButton("NO") { dialog, id ->
                     dialog.dismiss()
                 }
             val alert = builder.create()
@@ -140,6 +140,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    fun deleteItem(id: String) {
+        CoroutineScope(Dispatchers.Main).launch {
+            ActivityAPI.delete(token = token, apiKey = apiKey, idQuery=id)
+        }
+    }
+
     /*function getItem()*/
     fun getItem(category: String, userid: String) {
         CoroutineScope(Dispatchers.Main).launch {
@@ -156,6 +162,7 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
             }
+
             setList(Items)
         }
     }
