@@ -36,13 +36,12 @@ class AddActivity : AppCompatActivity() {
         )
 
         var userid = sharedPreference.getString("userid", "[No userid found]")
-        var activityid = sharedPreference.getString("activityid", "[No activityid found]")
 
         btnAdd.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
                 val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
                 val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
-                val data = ActivityData(userid = "$userid", activity = etActivity.text.toString(), category = type.text.toString(), activityid = "$activityid")
+                val data = ActivityData(userid = "$userid", activity = etActivity.text.toString(), category = type.text.toString())
                 val response = ActivityApi.create(token = token, apiKey = apiKey, activityData = data)
 
                 Toast.makeText(
