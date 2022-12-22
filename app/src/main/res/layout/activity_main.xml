@@ -64,21 +64,24 @@
         android:id="@+id/btnLogout"
         android:layout_width="44dp"
         android:layout_height="45dp"
+        android:layout_marginEnd="52dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_logout5_foreground" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddList"
-        android:layout_width="89dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="47dp"
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="48dp"
+        android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/ic_baseline_post_add_555"
         app:backgroundTint="@color/cardview_light_background"
         app:elevation="4dp"
-        app:fabSize="mini"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
