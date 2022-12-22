@@ -65,30 +65,17 @@
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
         app:layout_constraintVertical_bias="0.12" />
 
-    <TextView
-        android:id="@+id/textView6"
+    <Button
+        android:id="@+id/btnCont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CONTINUE"
+        android:textColor="#000000"
+        android:background="?android:attr/selectableItemBackground"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.447"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RetypePassword"
-        app:layout_constraintVertical_bias="0.19" />
-
-    <ImageButton
-        android:id="@+id/btnContinue"
-        android:layout_width="44dp"
-        android:layout_height="41dp"
-        android:contentDescription="Continue"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/RetypePassword"
-        app:layout_constraintVertical_bias="0.169"
-        app:srcCompat="@mipmap/ic_next2_foreground" />
+        app:layout_constraintTop_toBottomOf="@+id/RetypePassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
