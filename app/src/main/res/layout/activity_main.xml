@@ -47,6 +47,7 @@
         android:layout_width="47dp"
         android:layout_height="46dp"
         android:contentDescription="Settings"
+        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintEnd_toStartOf="@+id/btnLogout"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_settings2_foreground" />
@@ -64,6 +65,7 @@
         android:id="@+id/btnLogout"
         android:layout_width="44dp"
         android:layout_height="45dp"
+        android:background="?android:attr/selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_logout5_foreground" />

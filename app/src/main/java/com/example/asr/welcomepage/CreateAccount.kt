@@ -1,8 +1,10 @@
 package com.example.asr.welcomepage
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
@@ -17,7 +19,7 @@ import org.json.JSONObject
 
 class CreateAccount : AppCompatActivity() {
 
-    lateinit var btnContinue: ImageButton
+    lateinit var btnContinue: Button
     lateinit var etEmail: EditText
     lateinit var etPassword: EditText
 
@@ -26,11 +28,12 @@ class CreateAccount : AppCompatActivity() {
 
     val todoApi = RetrofitHelper.getInstance().create(UserApi::class.java)
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
 
-        btnContinue = findViewById(R.id.btnContinue);
+        btnContinue = findViewById(R.id.btnCont);
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
 
