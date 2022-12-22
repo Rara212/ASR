@@ -70,15 +70,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         /*delete functionality started*/
-        listTodo.setOnItemLongClickListener { adapterView, view, position, id ->
+        listTodo.setOnItemLongClickListener { adapterView, view, position, activityid ->
             val item = adapterView.getItemAtPosition(position) as Model
 
             val builder = AlertDialog.Builder(this)
             builder.setMessage("Are you sure you want to Delete?")
                 .setCancelable(false)
                 .setPositiveButton("YES") { dialog, id ->
-                    val id = item.Id.toString()
-                    var queryId = "eq.$id"
+                    val activityid = item.Id.toString()
+                    var queryId = "eq.$activityid"
                     deleteItem(queryId)
 
                     Toast.makeText(
@@ -86,6 +86,18 @@ class MainActivity : AppCompatActivity() {
                         "Your activity succesfully deleted",
                         Toast.LENGTH_SHORT
                     ).show()
+
+                    spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                            var category = adapterView?.getItemAtPosition(position).toString()
+                            var queryUserId = "eq.$userid"
+                            var queryCategory = "eq.$category"
+                            getItem(category = queryCategory, userid = queryUserId)
+                        }
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                        }
+
+                    }
                 }
                 .setNegativeButton("NO") { dialog, id ->
                     dialog.dismiss()
