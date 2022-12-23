@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.view.View
 import android.widget.*
 import com.example.asr.*
@@ -87,17 +88,12 @@ class MainActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT
                     ).show()
 
-                    spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                            var category = adapterView?.getItemAtPosition(position).toString()
-                            var queryUserId = "eq.$userid"
-                            var queryCategory = "eq.$category"
-                            getItem(category = queryCategory, userid = queryUserId)
-                        }
-                        override fun onNothingSelected(p0: AdapterView<*>?) {
-                        }
-
-                    }
+                    val sharedPreference = getSharedPreferences(
+                        "app_preference", Context.MODE_PRIVATE
+                    )
+                    var userid = sharedPreference.getString("userid", "[No userid found]")
+                    var queryUserId = "eq.$userid"
+                    getItem(userid = queryUserId)
                 }
                 .setNegativeButton("NO") { dialog, id ->
                     dialog.dismiss()
@@ -159,7 +155,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /*function getItem()*/
-    fun getItem(category: String, userid: String) {
+    fun getItem(category: String ="eq.Urgent-Important", userid: String) {
         CoroutineScope(Dispatchers.Main).launch {
             val response = ActivityAPI.get(token = token, apiKey = apiKey, category = category, userid = userid)
             var Items = ArrayList<Model>()
@@ -207,17 +203,7 @@ class MainActivity : AppCompatActivity() {
             "app_preference", Context.MODE_PRIVATE
         )
         var userid = sharedPreference.getString("userid", "[No userid found]")
-
-        spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                var category = adapterView?.getItemAtPosition(position).toString()
-                var queryUserId = "eq.$userid"
-                var queryCategory = "eq.$category"
-                getItem(category = queryCategory, userid = queryUserId)
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-
-        }
+        var queryUserId = "eq.$userid"
+        getItem(userid = queryUserId)
     }
 }

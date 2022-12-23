@@ -23,12 +23,15 @@
         android:layout_width="303dp"
         android:layout_height="111dp"
         android:layout_marginVertical="67dp"
+        android:ellipsize="end"
         android:gravity="center_vertical"
         android:text="Your Activity Here"
-        android:textSize="19dp"
+        android:textSize="24sp"
         android:textStyle="normal"
+        app:autoSizeTextType="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/icon_image"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
