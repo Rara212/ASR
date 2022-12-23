@@ -10,21 +10,24 @@
 
     <TextView
         android:id="@+id/lblHeader"
-        android:layout_width="351dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="369dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
         android:text="Hello, name!"
         android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/btnAboutUs"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSetting" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAboutUs" />
+
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="298dp"
         android:layout_height="106dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:text="Your Schedule!"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -35,7 +38,7 @@
         android:id="@+id/spinner"
         android:layout_width="371dp"
         android:layout_height="74dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:entries="@array/planets_array"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
@@ -43,29 +46,31 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageButton
-        android:id="@+id/btnSetting"
-        android:layout_width="47dp"
-        android:layout_height="46dp"
-        android:contentDescription="Settings"
+        android:id="@+id/btnAboutUs"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="4dp"
         android:background="?android:attr/selectableItemBackground"
         app:layout_constraintEnd_toStartOf="@+id/btnLogout"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_settings2_foreground" />
+        app:srcCompat="@mipmap/ic_info2_foreground" />
 
     <ListView
         android:id="@+id/list_todo"
-        android:layout_width="396dp"
-        android:layout_height="375dp"
+        android:layout_width="401dp"
+        android:layout_height="420dp"
         android:layout_marginStart="4dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <ImageButton
         android:id="@+id/btnLogout"
-        android:layout_width="44dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="40dp"
+        android:layout_width="49dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
         android:background="?android:attr/selectableItemBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

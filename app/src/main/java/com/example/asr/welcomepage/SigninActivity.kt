@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,7 +13,6 @@ import com.example.asr.R
 import com.example.asr.api.RetrofitHelper
 import com.example.asr.api.UserApi
 import com.example.asr.data.Users
-import com.example.asr.homepage.settings.SettingActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

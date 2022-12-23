@@ -5,13 +5,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
 import android.view.View
 import android.widget.*
 import com.example.asr.*
 import com.example.asr.api.ActivityAPI
 import com.example.asr.api.RetrofitHelper
-import com.example.asr.homepage.settings.SettingActivity
 import com.example.asr.welcomepage.SigninActivity
 import com.example.asr.homepage.list.Model
 import com.example.asr.homepage.list.TodoAdapter
@@ -23,14 +21,15 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.widget.Toast
+import com.example.asr.homepage.settings.AboutUs
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView
     lateinit var btnadd_activity: FloatingActionButton
-    lateinit var btnSetting: ImageButton
     lateinit var labelHeader: TextView
     lateinit var spQuadrant: Spinner
     lateinit var btnLogout: ImageButton
+    lateinit var btnAboutus: ImageButton
 
     val apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1maWZ5d2JnY3FrZmFzbmhjaWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk5NTUxMzYsImV4cCI6MTk4NTUzMTEzNn0.EqjggAQEzg4acUUzrwVxncdxNOiGP3VYO9Wd2yRz_LA"
     val token = "Bearer $apiKey"
@@ -46,9 +45,9 @@ class MainActivity : AppCompatActivity() {
         labelHeader = findViewById(R.id.lblHeader)
 
         btnadd_activity = findViewById(R.id.fabAddList)
-        btnSetting = findViewById(R.id.btnSetting)
         spQuadrant = findViewById(R.id.spinner)
         btnLogout = findViewById(R.id.btnLogout)
+        btnAboutus = findViewById(R.id.btnAboutUs)
 
         /*Adding shared preference*/
         val sharedPreference = getSharedPreferences(
@@ -126,8 +125,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
         /*Intent to go to setting*/
-        btnSetting.setOnClickListener{
-            Intent(this, SettingActivity::class.java).also {
+        btnAboutus.setOnClickListener{
+            Intent(this, AboutUs::class.java).also {
                 startActivity(it)
 
             }
