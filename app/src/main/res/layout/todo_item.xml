@@ -12,7 +12,7 @@
         android:layout_width="106dp"
         android:layout_height="113dp"
         android:padding="10dp"
-        android:src="@mipmap/ic_todo2_foreground"
+        android:src="@mipmap/ic_checklist_foreground"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -20,14 +20,16 @@
 
     <TextView
         android:id="@+id/txt_todolist"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="303dp"
+        android:layout_height="111dp"
         android:layout_marginVertical="67dp"
+        android:gravity="center"
         android:text="Your Activity Here"
+        android:textAlignment="inherit"
         android:textSize="19dp"
         android:textStyle="normal"
-        app:layout_constraintLeft_toRightOf="@id/icon_image"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="40dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/icon_image"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
