@@ -46,7 +46,7 @@ class AddActivity : AppCompatActivity() {
             Toast.makeText(this, "This is a Quadrant of Urgency", Toast.LENGTH_SHORT).show()
         }
         rbUNI.setOnClickListener {
-            Toast.makeText(this, "This is a Quadrant of Ditraction", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "This is a Quadrant of Distraction", Toast.LENGTH_SHORT).show()
         }
         rbNUI.setOnClickListener {
             Toast.makeText(this, "This is a Quadrant of Quality", Toast.LENGTH_SHORT).show()

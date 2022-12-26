@@ -46,9 +46,6 @@ class UpdateActivity : AppCompatActivity() {
         type3 = findViewById(R.id.rb3)
         type4 = findViewById(R.id.rb4)
 
-        val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
-        val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
-
         category = intent.getStringExtra("category").toString()
         id = intent.getStringExtra("activityid").toString()
         var activityidQuery = "eq.$id"
@@ -68,6 +65,8 @@ class UpdateActivity : AppCompatActivity() {
 
         btnUpdate.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
+                val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
+                val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
                 val data = ActivityData(activity = etActivityUpdate.text.toString(), category = type.text.toString())
                 val response = activityApi.update(token = token, apiKey = apiKey, idQuery = activityidQuery, activityData = data)
 
