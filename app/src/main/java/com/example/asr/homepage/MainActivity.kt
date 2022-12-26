@@ -2,26 +2,27 @@ package com.example.asr.homepage
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface.OnShowListener
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.example.asr.*
 import com.example.asr.api.ActivityAPI
 import com.example.asr.api.RetrofitHelper
-import com.example.asr.welcomepage.SigninActivity
 import com.example.asr.homepage.list.Model
 import com.example.asr.homepage.list.TodoAdapter
+import com.example.asr.homepage.settings.AboutUs
+import com.example.asr.homepage.settings.UpdateActivity
+import com.example.asr.welcomepage.SigninActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.android.synthetic.main.activity_main.*
-import androidx.appcompat.app.AlertDialog
-import com.example.asr.homepage.settings.UpdateActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import android.widget.Toast
-import com.example.asr.homepage.settings.AboutUs
+
 
 class MainActivity : AppCompatActivity() {
     lateinit var listTodo: ListView
@@ -73,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         listTodo.setOnItemLongClickListener { adapterView, view, position, activityid ->
             val item = adapterView.getItemAtPosition(position) as Model
 
-            val builder = AlertDialog.Builder(this)
+            val builder = AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle)
             builder.setMessage("Are you sure you want to Delete?")
                 .setCancelable(false)
                 .setPositiveButton("YES") { dialog, id ->
@@ -86,11 +87,6 @@ class MainActivity : AppCompatActivity() {
                         "Your activity succesfully deleted",
                         Toast.LENGTH_SHORT
                     ).show()
-
-                    val sharedPreference = getSharedPreferences(
-                        "app_preference", Context.MODE_PRIVATE
-                    )
-                    var userid = sharedPreference.getString("userid", "[No userid found]")
                     var queryUserId = "eq.$userid"
                     getItem(userid = queryUserId)
                 }
