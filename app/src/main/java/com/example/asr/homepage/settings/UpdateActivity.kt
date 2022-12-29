@@ -29,7 +29,7 @@ class UpdateActivity : AppCompatActivity() {
 
     lateinit var id : String
     lateinit var category : String
-    val apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1maWZ5d2JnY3FrZmFzbmhjaWJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE2Njk5NTUxMzYsImV4cCI6MTk4NTUzMTEzNn0.EqjggAQEzg4acUUzrwVxncdxNOiGP3VYO9Wd2yRz_LA"
+    val apiKey = ""
     val token = "Bearer $apiKey"
 
     val activityApi = RetrofitHelper.getInstance().create(ActivityAPI::class.java)
