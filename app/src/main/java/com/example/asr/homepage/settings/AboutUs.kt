@@ -15,6 +15,7 @@ class AboutUs : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_us)
 
+        /*1.Return to Main Activity when back button clicked*/
         btnbackAboutUs.setOnClickListener {
             Intent(this, MainActivity::class.java).also {
                 startActivity(it)

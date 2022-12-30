@@ -20,6 +20,7 @@ import org.json.JSONObject
 
 class SigninActivity : AppCompatActivity() {
 
+    /*1.Set up variables that will be used*/
     lateinit var btnLogIn: Button
     lateinit var Email: EditText
     lateinit var etPassword: EditText
@@ -27,6 +28,7 @@ class SigninActivity : AppCompatActivity() {
     val apiKey = ""
     val token = "Bearer $apiKey"
 
+    /*2.Create calling api function*/
     val todoApi = RetrofitHelper.getInstance().create(UserApi::class.java)
 
     @SuppressLint("MissingInflatedId")
@@ -34,15 +36,25 @@ class SigninActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
 
+        /*3.Define the references of the variables*/
         btnLogIn = findViewById(R.id.btnLogIn)
         Email = findViewById(R.id.Email)
         etPassword = findViewById(R.id.etPassword)
 
+        /*6.Process the login input*/
         btnLogIn.setOnClickListener {
            signIn(Email.text.toString(), etPassword.text.toString())
         }
     }
 
+    /*4.Create goToHome function*/
+    private fun goToHome() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    /*5.Define the references of the variables*/
     private fun signIn(email: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
 
@@ -92,10 +104,5 @@ class SigninActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-    private fun goToHome() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
     }
 }

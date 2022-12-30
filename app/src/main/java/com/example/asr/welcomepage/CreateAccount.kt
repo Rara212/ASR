@@ -19,6 +19,7 @@ import org.json.JSONObject
 
 class CreateAccount : AppCompatActivity() {
 
+    /*1.Set up variables that will be used*/
     lateinit var btnContinue: Button
     lateinit var etEmail: EditText
     lateinit var etPassword: EditText
@@ -26,6 +27,7 @@ class CreateAccount : AppCompatActivity() {
     val apiKey = ""
     val token = "Bearer $apiKey"
 
+    /*2.Create calling api function*/
     val todoApi = RetrofitHelper.getInstance().create(UserApi::class.java)
 
     @SuppressLint("MissingInflatedId")
@@ -33,10 +35,12 @@ class CreateAccount : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
 
+        /*3.Define the references of the variables*/
         btnContinue = findViewById(R.id.btnCont);
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
 
+        /*5.Save new account data to database*/
         btnContinue.setOnClickListener {
             signUp(etEmail.text.toString(), etPassword.text.toString())
             Intent(this, SigninActivity::class.java).also {
@@ -44,6 +48,8 @@ class CreateAccount : AppCompatActivity() {
             }
         }
     }
+
+    /*4.Create signUp function*/
     private fun signUp(email: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
             var data = Users(email = email, password = password)

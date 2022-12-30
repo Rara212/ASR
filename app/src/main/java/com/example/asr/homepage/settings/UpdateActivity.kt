@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 
 class UpdateActivity : AppCompatActivity() {
 
+    /*1.Set up variables that will be used*/
     lateinit var etActivityUpdate: EditText
     lateinit var btnUpdate: Button
     lateinit var type1: RadioButton
@@ -32,6 +33,7 @@ class UpdateActivity : AppCompatActivity() {
     val apiKey = ""
     val token = "Bearer $apiKey"
 
+    /*2.Create calling api function*/
     val activityApi = RetrofitHelper.getInstance().create(ActivityAPI::class.java)
 
     @SuppressLint("MissingInflatedId")
@@ -39,6 +41,7 @@ class UpdateActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_update)
 
+        /*3.Define the references of the variables*/
         etActivityUpdate = findViewById(R.id.etActivityUpdate)
         btnUpdate = findViewById(R.id.btnAddupdate)
         type1 = findViewById(R.id.rb1)
@@ -46,11 +49,12 @@ class UpdateActivity : AppCompatActivity() {
         type3 = findViewById(R.id.rb3)
         type4 = findViewById(R.id.rb4)
 
+        /*4.Fetch data from the previous activity*/
         category = intent.getStringExtra("category").toString()
         id = intent.getStringExtra("activityid").toString()
         var activityidQuery = "eq.$id"
 
-        /*Showing existing data*/
+        /*5.Showing existing data*/
         etActivityUpdate.setText(intent.getStringExtra("activity").toString())
 
         if(category==type1.text.toString()) {
@@ -64,6 +68,7 @@ class UpdateActivity : AppCompatActivity() {
         }
 
         btnUpdate.setOnClickListener{
+            /*6.Load data after user finished edited the data*/
             CoroutineScope(Dispatchers.Main).launch {
                 val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
                 val type= findViewById<RadioButton>(checkedActivityRadioButtonId)

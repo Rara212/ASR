@@ -25,6 +25,7 @@ import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
+    /*1.Set up variables that will be used*/
     lateinit var listTodo: ListView
     lateinit var btnadd_activity: FloatingActionButton
     lateinit var labelHeader: TextView
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     val apiKey = ""
     val token = "Bearer $apiKey"
     val Items = ArrayList<Model>()
+
+    /*2.Create calling api function*/
     val ActivityAPI = RetrofitHelper.getInstance().create(ActivityAPI::class.java)
 
     @SuppressLint("MissingInflatedId")
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /*3.Define the references of the variables*/
         listTodo = findViewById(R.id.list_todo)
         labelHeader = findViewById(R.id.lblHeader)
 
@@ -50,17 +54,18 @@ class MainActivity : AppCompatActivity() {
         btnLogout = findViewById(R.id.btnLogout)
         btnAboutus = findViewById(R.id.btnAboutUs)
 
-        /*Adding shared preference*/
+        /*4.Fetching data passed from Signin Activity*/
         val sharedPreference = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE
         )
-
         var email = sharedPreference.getString("email", "[No email found]").toString()
-        lblHeader.text = "Hello, $email"
         var userid = sharedPreference.getString("userid", "[No userid found]")
 
+        /*5.Show passed e-mail as a label*/
+        lblHeader.text = "Hello, $email"
 
-        /*update functionality*/
+
+        /*6.Update functionality*/
         listTodo.setOnItemClickListener { adapterView, view, position, id ->
             val item = adapterView.getItemAtPosition(position) as Model
             val intent = Intent(this, UpdateActivity::class.java)
@@ -70,7 +75,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        /*delete functionality started*/
+        /*10.Delete functionality*/
         listTodo.setOnItemLongClickListener { adapterView, view, position, activityid ->
             val item = adapterView.getItemAtPosition(position) as Model
 
@@ -100,7 +105,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        /*Quadrants Activity Filter*/
+        /*11.Quadrants Activity Filter*/
         spQuadrant.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(adapterView: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     var category = adapterView?.getItemAtPosition(position).toString()
@@ -114,13 +119,13 @@ class MainActivity : AppCompatActivity() {
             }
 
 
-        /*Intent to add activity*/
+        /*12.Intent to add activity*/
         btnadd_activity.setOnClickListener{
             Intent(this, AddActivity::class.java).also {
                 startActivity(it)
             }
         }
-        /*Intent to go to setting*/
+        /*13.Intent to go to setting*/
         btnAboutus.setOnClickListener{
             Intent(this, AboutUs::class.java).also {
                 startActivity(it)
@@ -128,7 +133,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        /*Logout functionality*/
+        /*14.Logout functionality*/
         btnLogout.setOnClickListener{
             var editor = sharedPreference.edit()
             editor.clear()
@@ -143,13 +148,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /*7.function getItem()*/
     fun deleteItem(id: String) {
         CoroutineScope(Dispatchers.Main).launch {
             ActivityAPI.delete(token = token, apiKey = apiKey, idQuery=id)
         }
     }
 
-    /*function getItem()*/
+    /*8.function getItem()*/
     fun getItem(category: String ="eq.Urgent-Important", userid: String) {
         CoroutineScope(Dispatchers.Main).launch {
             val response = ActivityAPI.get(token = token, apiKey = apiKey, category = category, userid = userid)
@@ -170,13 +176,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*showing the to-do list*/
+    /*9.showing the to-do list function*/
     fun setList(Items: ArrayList<Model>) {
         val adapter = TodoAdapter(this, R.layout.todo_item, Items)
         listTodo.adapter = adapter
     }
 
-    /*making sure users can't go to login page once they're signed in*/
+    /*13.Making sure users can't go to login page once they're signed in*/
     override fun onBackPressed() {
         val sharedPreference = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE
@@ -190,6 +196,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /*15.Making sure data are refreshed after user coming back to Main Activity*/
     override fun onResume() {
         super.onResume()
 

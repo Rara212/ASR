@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 
 class AddActivity : AppCompatActivity() {
 
+    /*1.Set up variables that will be used*/
     lateinit var etActivity : EditText
     lateinit var btnAdd : Button
     lateinit var rgAddActivity : RadioGroup
@@ -28,12 +29,14 @@ class AddActivity : AppCompatActivity() {
     val apiKey = ""
     val token = "Bearer $apiKey"
 
+    /*2.Create calling api function*/
     val ActivityApi = RetrofitHelper.getInstance().create(ActivityAPI::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+        /*3.Define the references of the variables*/
         btnAdd = findViewById(R.id.btnAdd)
         etActivity = findViewById(R.id.etActivity)
         rgAddActivity = findViewById(R.id.rgType)
@@ -42,6 +45,7 @@ class AddActivity : AppCompatActivity() {
         rbNUI = findViewById(R.id.rb3)
         rbNUNI = findViewById(R.id.rb4)
 
+        /*4.Show info about each category when user clicked each radio button*/
         rbUI.setOnClickListener {
             Toast.makeText(this, "This is a Quadrant of Urgency", Toast.LENGTH_SHORT).show()
         }
@@ -55,15 +59,15 @@ class AddActivity : AppCompatActivity() {
             Toast.makeText(this, "This is a Quadrant of Waste", Toast.LENGTH_SHORT).show()
         }
 
-
+        /*5.Fetching data passed from Main Activity*/
         val sharedPreference = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE
         )
-
         var userid = sharedPreference.getString("userid", "[No userid found]")
 
         btnAdd.setOnClickListener{
             CoroutineScope(Dispatchers.Main).launch {
+                /*6.Save data after user filled the data form*/
                 val checkedActivityRadioButtonId = rgType.checkedRadioButtonId
                 val type= findViewById<RadioButton>(checkedActivityRadioButtonId)
                 val data = ActivityData(userid = "$userid", activity = etActivity.text.toString(), category = type.text.toString())
