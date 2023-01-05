@@ -54,7 +54,7 @@ class SigninActivity : AppCompatActivity() {
         finish()
     }
 
-    /*5.Define the references of the variables*/
+    /*5.Create Signin function*/
     private fun signIn(email: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
 

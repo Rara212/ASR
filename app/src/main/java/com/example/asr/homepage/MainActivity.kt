@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    /*7.function getItem()*/
+    /*7.function Delete Item()*/
     fun deleteItem(id: String) {
         CoroutineScope(Dispatchers.Main).launch {
             ActivityAPI.delete(token = token, apiKey = apiKey, idQuery=id)
@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity() {
         listTodo.adapter = adapter
     }
 
-    /*13.Making sure users can't go to login page once they're signed in*/
+    /*15.Making sure users can't go to login page once they're signed in*/
     override fun onBackPressed() {
         val sharedPreference = getSharedPreferences(
             "app_preference", Context.MODE_PRIVATE
@@ -196,7 +196,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    /*15.Making sure data are refreshed after user coming back to Main Activity*/
+    /*16.Making sure data are refreshed after user coming back to Main Activity*/
     override fun onResume() {
         super.onResume()
 
